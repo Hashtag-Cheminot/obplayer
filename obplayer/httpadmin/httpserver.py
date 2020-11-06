@@ -383,7 +383,7 @@ class WebSocketConnection (object):
 
         payload = self.websocket_read_bytes(length)
         if maskkey:
-            payload = bytearray(ord(b) ^ ord(maskkey[i % 4]) for (i, b) in enumerate(payload))
+            payload = bytearray(b ^ maskkey[i % 4] for (i, b) in enumerate(payload))
 
         #print("RECV: " + hex(headbyte1) + " " + hex(headbyte2) + " " + str(payload))
         return (opcode, payload, headbyte1, headbyte2)
