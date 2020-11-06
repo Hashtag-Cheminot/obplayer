@@ -110,14 +110,14 @@ function AudioTransmitter(server, sampleSize)
 
   that.server = server;
   that.processor = that.server.context.createScriptProcessor(sampleSize, 1, 1);
-  //that.vu_meter = document.getElementById('mixer-vu-meter');
+  that.vu_meter = document.getElementById('mixer-vu-meter');
 
   that.processor.onaudioprocess = function (event)
   {
     var data = event.inputBuffer.getChannelData(0);
     that.server.send_audio(data);
-    //$(that.vu_meter).css('width', (Math.max.apply(Math, data) * 100) + '%');
-    //event.outputBuffer.getChannelData(0).set(data);
+    $(that.vu_meter).css('width', (Math.max.apply(Math, data) * 100) + '%');
+    event.outputBuffer.getChannelData(0).set(data);
   }
 
   that.connect = function (destination)
@@ -147,12 +147,12 @@ function AudioReceiver(server, sampleSize)
   that.processor.onaudioprocess = function (event)
   {
     var data = that.buffer.shift() || new Float32Array(sampleSize);
-    //var input = event.inputBuffer.getChannelData(0);
-    /*
+   var input = event.inputBuffer.getChannelData(0);
+    
     for (var i = 0; i < input.length; i++) {
       data[i] += input[i];
     }
-    */
+    
     event.outputBuffer.getChannelData(0).set(data);
   }
 
@@ -440,7 +440,7 @@ $(document).ready(function()
   });
   $('#mixer-mic .mixer-mute').click(function () { Stream.muteMic(); });
 
-  /*
+  
   $('#mixer-something .mixer-volume').slider({
     orientation: 'vertical',
     min: 0,
@@ -449,7 +449,7 @@ $(document).ready(function()
     slide: Stream.mixerMicChange
   });
   $('#mixer-something .mixer-mute').click(function () { Stream.muteMic(); });
-  */
+  
 });
 
 
