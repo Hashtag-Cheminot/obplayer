@@ -32,7 +32,7 @@ LA.update_station_count = function() {
     if (status == 'success') {
       live_stations.html(response);
     } else {
-      live_stations.html('error...');
+      live_stations.html('erreur...');
     }
   });
 }
@@ -306,21 +306,21 @@ LA.updateStatus = function()
 
       if(response.status=='override')
       {
-        $('#info-status').text('Override');
+        $('#info-status').text('Commandé par programmation');
         $('#info-status').attr('data-status','playing');
         LA.playing = true;
       }
 
       else if(response.status=='playing')
       {
-        $('#info-status').text('Playing');
+        $('#info-status').text('Lecture');
         $('#info-status').attr('data-status','playing');
         LA.playing = true;
       }
 
       else
       {
-        $('#info-status').text('Paused');
+        $('#info-status').text('En pause');
         $('#info-status').attr('data-status','paused');
         LA.playing = false;
       }
