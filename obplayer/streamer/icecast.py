@@ -291,13 +291,13 @@ class ObIcecastStreamer (ObGstStreamer):
         # and push to icecast, or a file.
         current_track = ''
         mode = obplayer.Config.setting('streamer_{0}_metadata_push_mode'.format(self.stream_number), True)
-        url = obplayer.Config.setting('sync_url', True) + '/modules/now_playing/now_playing.php?i=' + \
-        str(obplayer.Config.setting('sync_device_id', True)) + '&json=1'
+        url = obplayer.Config.setting('sync_url', True) + '/modules/now_playing/now_playing.php?json=1&i=' + \
+        str(obplayer.Config.setting('sync_device_id', True))
         # connect to the observer contorlling playout to get the current track info.
         req = requests.get(url)
         if req.status_code == 200:
             data = req.json()
-            if current_track != data['media']['artist'] + ' - ' + data['media']['title']:
+            if data['media']['artist']!=None and current_track != data['media']['artist'] + ' - ' + data['media']['title']:
                 current_track = data['media']['artist'] + ' - ' + data['media']['title']
         else:
             obplayer.Log.log('couldn\'t connect to your observer, or your don\'t have playlog reporting to the server!', 'error')
@@ -318,7 +318,7 @@ class ObIcecastStreamer (ObGstStreamer):
             server_port = obplayer.Config.setting('streamer_{0}_icecast_port'.format(self.stream_number), True)
             admin_username = obplayer.Config.setting('streamer_{0}_admin_username'.format(self.stream_number), True)
             admin_password = obplayer.Config.setting('streamer_{0}_admin_password'.format(self.stream_number), True)
-            icecast_api_url = 'http://{0}:{1}/admin/metadata?mount={2}&mode=updinfo&song={3}'.format(server_ip, server_port, mountpoint, current_track.replace(' ', '+'))
+            icecast_api_url = 'http://{0}:{1}/admin/metadata?mount=%2Fgloriousrpstation.ogg&mode=updinfo&charset=UTF-8&song={2}'.format(server_ip, server_port, current_track.replace(' ', '+'))
             auth = requests.auth.HTTPBasicAuth(admin_username, admin_password)
             # Post the track info to the icecast server.
             req = requests.get(icecast_api_url, auth=auth)

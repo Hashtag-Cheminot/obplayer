@@ -82,7 +82,7 @@ class ObAudioOutputBin (ObOutputBin):
         self.elements.append(Gst.ElementFactory.make('queue2', 'audio-out-post-tee-queue'))
 
         ## create audio sink element
-        audio_output = obplayer.Config.setting('audio_out_mode')
+        audio_output = 'pulse' #obplayer.Config.setting('audio_out_mode')
         if audio_output == 'alsa':
             self.audiosink = Gst.ElementFactory.make('alsasink', 'audio-out-sink')
             alsa_device = obplayer.Config.setting('audio_out_alsa_device')

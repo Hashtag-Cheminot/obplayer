@@ -1229,7 +1229,7 @@
                 <td title="rtp_in_encoding_tooltip" data-t>rtp_in_encoding</td>
                 <td><select id="rtp_in_encoding_select" name="rtp_in_encoding">
                     <option value="OPUS"<%= obplayer.HTTPAdmin.form_item_selected('rtp_in_encoding','OPUS') %>>Opus</option>
-                    <!-- <option value="MPA"<%= obplayer.HTTPAdmin.form_item_selected('rtp_in_encoding','MPA') %>>MP3</option> -->
+                    <option value="MPA"<%= obplayer.HTTPAdmin.form_item_selected('rtp_in_encoding','MPA') %>>MP3</option>
                     <option value="L16"<%= obplayer.HTTPAdmin.form_item_selected('rtp_in_encoding','L16') %>>16-bit PCM</option>
                     <option value="L24"<%= obplayer.HTTPAdmin.form_item_selected('rtp_in_encoding','L24') %>>24-bit PCM (Livewire)</option>
                   </select></td>
@@ -1375,8 +1375,8 @@
                     <option value="jack"<%= obplayer.HTTPAdmin.form_item_selected('audio_out_mode','jack') %> data-t>JACK</option>
                     <option value="oss"<%= obplayer.HTTPAdmin.form_item_selected('audio_out_mode','oss') %> data-t>OSS</option>
                     <option value="pulse"<%= obplayer.HTTPAdmin.form_item_selected('audio_out_mode','pulse') %> data-t>Pulse Audio</option>
-                    <!-- <option value="shout2send"<%= obplayer.HTTPAdmin.form_item_selected('audio_out_mode','shout2send') %> data-t>Shoutcast</option> -->
-                    <!-- <option value="intersink"<%= obplayer.HTTPAdmin.form_item_selected('audio_out_mode','intersink') %> data-t>Direct Streaming</option> -->
+                    <option value="shout2send"<%= obplayer.HTTPAdmin.form_item_selected('audio_out_mode','shout2send') %> data-t>Shoutcast</option>
+                    <option value="intersink"<%= obplayer.HTTPAdmin.form_item_selected('audio_out_mode','intersink') %> data-t>Direct Streaming</option>
                     <option value="test"<%= obplayer.HTTPAdmin.form_item_selected('audio_out_mode','test') %> data-t>No Output</option>
                   </select></td>
               </tr>
@@ -1769,7 +1769,7 @@
                     <option value="egl"<%= obplayer.HTTPAdmin.form_item_selected('video_out_mode','egl') %> data-t>EGL/GLES</option>
                     <option value="wayland"<%= obplayer.HTTPAdmin.form_item_selected('video_out_mode','wayland') %> data-t>Wayland</option>
                     <option value="ascii"<%= obplayer.HTTPAdmin.form_item_selected('video_out_mode','ascii') %> data-t>Coloured ASCII</option>
-                    <!-- <option value="intersink"<%= obplayer.HTTPAdmin.form_item_selected('video_out_mode','intersink') %> data-t>Direct Streaming</option> -->
+                    <option value="intersink"<%= obplayer.HTTPAdmin.form_item_selected('video_out_mode','intersink') %> data-t>Direct Streaming</option>
                     <option value="test"<%= obplayer.HTTPAdmin.form_item_selected('video_out_mode','test') %> data-t>No Output</option>
                   </select></td>
               </tr>

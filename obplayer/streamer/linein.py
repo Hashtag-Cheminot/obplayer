@@ -143,7 +143,7 @@ class ObLineinIcecastStreamer (ObGstStreamer):
         self.shout2send.set_property('public', self.icecast_public)
         self.audiopipe.append(self.shout2send)
 
-        #self.elements.append(ObRtpOutput())
+        self.elements.append(ObRtpOutput())
 
         self.build_pipeline(self.audiopipe)
 
@@ -207,18 +207,19 @@ class ObRtpOutput (Gst.Bin):
 
         self.rtpbin = Gst.ElementFactory.make("rtpbin")
         self.add(self.rtpbin)
-
+        """
         self.udp_rtp = Gst.ElementFactory.make("udpsink")
-        self.udp_rtp.set_property('host', '192.168.1.248')
-        self.udp_rtp.set_property('port', 4000)
+        self.udp_rtp.set_property('host', '10.9.8.1')
+        self.udp_rtp.set_property('port', 5004)
         self.add(self.udp_rtp)
 
         self.udp_rtcp = Gst.ElementFactory.make("udpsink")
-        self.udp_rtcp.set_property('host', '192.168.1.248')
-        self.udp_rtcp.set_property('port', 4001)
+        self.udp_rtcp.set_property('host', '10.9.8.1')
+        self.udp_rtcp.set_property('port', 5005)
         self.udp_rtcp.set_property('sync', False)
         self.udp_rtcp.set_property('async', False)
         self.add(self.udp_rtcp)
+        """
 
         # link elements
         self.sinkpad = Gst.GhostPad.new('sink', self.capsfilter.get_static_pad('sink'))
