@@ -173,13 +173,12 @@ class ObLiveAssist (httpserver.ObHTTPServer):
                 if opcode == httpserver.WS_OP_TEXT:
                     msg = json.loads(msg)
                     if msg['type'] == 'negotiate':
-                        #print(repr(msg))
                         if not conn.microphone:
                             conn.microphone = microphone.ObLiveAssistMicrophone(conn, msg['mode'], msg)
                             conn.microphone.start()
                             self.send_mic_status(conn)
                         else:
-                            pass #conn.microphone.change_format(msg['rate'], msg['encoding'])
+                            conn.microphone.change_format(msg['rate'], msg['encoding']) #pass
 
                     elif msg['type'] == 'mute':
                         if conn.microphone:
